@@ -20,8 +20,7 @@ class LikeButton extends Component
 
         $user = auth()->user();
 
-
-        if($user->hasLIked($this->post)) {
+        if($user->hasLiked($this->post)) {
             $user->likes()->detach($this->post);
             return;
         }

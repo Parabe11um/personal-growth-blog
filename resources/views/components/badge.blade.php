@@ -7,6 +7,11 @@ $bgColor = match ($bgColor){
     'blue' => 'bg-blue-100',
     'red' => 'bg-red-100',
     'yellow' => 'bg-yellow-100',
+    'pink' => 'text-pink-800',
+    'indigo' => 'text-indigo-800',
+    'purple' => 'text-purple-800',
+    'green' => 'text-green-800',
+    'lime' => 'text-lime-800',
     default => 'bg-gray-100'
 };
 
@@ -15,6 +20,11 @@ $textColor = match ($textColor){
     'blue' => 'text-blue-800',
     'red' => 'text-red-800',
     'yellow' => 'text-yellow-800',
+    'pink' => 'bg-pink-100',
+    'indigo' => 'bg-indigo-100',
+    'purple' => 'bg-purple-100',
+    'green' => 'bg-green-100',
+    'lime' => 'bg-lime-100',
     default => 'text-gray-800'
 }
 

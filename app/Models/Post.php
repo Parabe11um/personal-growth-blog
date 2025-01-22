@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Carbon\Carbon;
-use Database\Factories\PostFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -12,7 +11,6 @@ use Illuminate\Support\Str;
 
 class Post extends Model
 {
-    /** @use HasFactory<PostFactory> */
     use HasFactory;
     use SoftDeletes;
 
@@ -44,12 +42,10 @@ class Post extends Model
     {
         return $this->belongsToMany(User::class, 'post_like')->withTimestamps();
     }
-
     public function scopePublished($query)
     {
         $query->where('published_at', '<=', Carbon::now());
     }
-
 
     public function scopeWithCategory($query, string $category)
     {
