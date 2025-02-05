@@ -12,7 +12,6 @@ use Livewire\WithPagination;
 
 class PostList extends Component
 {
-
     use WithPagination;
 
     #[Url()]
@@ -26,21 +25,23 @@ class PostList extends Component
 
     #[Url()]
     public $popular = false;
+
     public function setSort($sort)
     {
         $this->sort = ($sort === 'desc') ? 'desc' : 'asc';
     }
 
     #[On('search')]
-
     public function updateSearch($search)
     {
         $this->search = $search;
+        $this->resetPage();
     }
 
     public function clearFilters()
     {
         $this->search = '';
+        $this->category = '';
         $this->resetPage();
     }
 
@@ -48,6 +49,7 @@ class PostList extends Component
     public function posts()
     {
         return Post::published()
+            ->with('author', 'categories')
             ->when($this->activeCategory, function ($query) {
                 $query->withCategory($this->category);
             })
@@ -62,14 +64,14 @@ class PostList extends Component
     #[Computed()]
     public function activeCategory()
     {
+        if ($this->category === null || $this->category === '') {
+            return null;
+        }
         return Category::where('slug', $this->category)->first();
     }
-
 
     public function render()
     {
         return view('livewire.post-list');
     }
 }
-
-
