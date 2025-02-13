@@ -1,9 +1,9 @@
 <x-app-layout title="Home">
 
     @section('hero')
-        <div class="w-full text-center py-32">
+        <div class="w-full text-center py-32 bg-gray-100">
             <h1 class="text-2xl md:text-3xl font-bold text-center lg:text-5xl text-gray-700">
-                Добро пожаловать<span class="text-yellow-500">&lt;YELO&gt;</span> <span class="text-gray-900"> News</span>
+                Блог сайт о персональном развитии, карьерном росте, самопознании и совершенствовании
             </h1>
             <p class="text-gray-500 text-lg mt-1">Мой блог</p>
             <a class="px-3 py-2 text-lg text-white bg-gray-800 rounded mt-5 inline-block"
