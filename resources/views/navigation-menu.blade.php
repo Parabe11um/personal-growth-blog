@@ -1,24 +1,64 @@
-<nav class="flex items-center justify-between py-3 px-6 border-b border-gray-100">
-    <div id="nav-left" class="flex items-center">
-        <a href="{{ route('home') }}">
-            <x-application-mark />
-        </a>
-        <div class="top-menu ml-10">
-            <div class="flex space-x-4">
-                <x-nav-link href="{{ route('home') }}" :active="request()->routeIs('home')">
-                    {{ __('Главная') }}
-                </x-nav-link>
-                <x-nav-link href="{{ route('posts.index') }}" :active="request()->routeIs('posts.index')">
-                    {{ __('Блог') }}
-                </x-nav-link>
+<nav x-data="{ open: false }" class="bg-white border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+            <!-- Левая часть: логотип и меню -->
+            <div class="flex">
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="{{ route('home') }}">
+                        <x-application-mark />
+                    </a>
+                </div>
+                <!-- Меню (скрыто на мобильных, видно на sm и выше) -->
+                <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                    <x-nav-link href="{{ route('home') }}" :active="request()->routeIs('home')">
+                        {{ __('Главная') }}
+                    </x-nav-link>
+                    <x-nav-link href="{{ route('posts.index') }}" :active="request()->routeIs('posts.index')">
+                        {{ __('Блог') }}
+                    </x-nav-link>
+                </div>
+            </div>
+            <!-- Правая часть: элементы авторизации -->
+            <div class="hidden sm:ml-6 sm:flex sm:items-center">
+                @auth
+                    @include('layouts.partials.header-right-auth')
+                @else
+                    @include('layouts.partials.header-right-guest')
+                @endauth
+            </div>
+            <!-- Кнопка мобильного меню -->
+            <div class="-mr-2 flex items-center sm:hidden">
+                <button @click="open = !open" type="button" class="bg-white inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                    <span class="sr-only">Open main menu</span>
+                    <!-- Иконка гамбургера (закрыта) -->
+                    <svg x-show="!open" class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                    <!-- Иконка крестика (открыто) -->
+                    <svg x-show="open" x-cloak class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
             </div>
         </div>
     </div>
-    <div id="nav-right" class="flex items-center md:space-x-6">
-        @auth
-            @include('layouts.partials.header-right-auth')
-        @else
-            @include('layouts.partials.header-right-guest')
-        @endauth
+
+    <!-- Мобильное меню (показывается, когда open = true) -->
+    <div x-show="open" x-cloak class="sm:hidden">
+        <div class="pt-2 pb-3 space-y-1">
+            <x-nav-link href="{{ route('home') }}" :active="request()->routeIs('home')" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800">
+                {{ __('Главная') }}
+            </x-nav-link>
+            <x-nav-link href="{{ route('posts.index') }}" :active="request()->routeIs('posts.index')" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800">
+                {{ __('Блог') }}
+            </x-nav-link>
+        </div>
+        <div class="pt-4 pb-3 border-t border-gray-200">
+            @auth
+                @include('layouts.partials.header-right-auth')
+            @else
+                @include('layouts.partials.header-right-guest')
+            @endauth
+        </div>
     </div>
 </nav>
