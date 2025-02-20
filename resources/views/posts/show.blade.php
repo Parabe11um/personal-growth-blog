@@ -1,14 +1,11 @@
-<x-app-layout :title="$post->title">
+<x-app-layout :meta-title="$post->meta_title ?: $post->title"
+              :meta-description="$post->meta_description ?: $post->title">
     <article class="col-span-4 md:col-span-3 mt-10 mx-auto py-5 w-full" style="max-width:700px">
         <img class="w-full my-2 rounded-lg" src="{{ $post->getThumbnailUrl() }}" alt="{{ $post->title }}">
         <h1 class="text-4xl font-bold text-left text-gray-800">
             {{ $post->title }}
         </h1>
         <div class="mt-2 flex justify-between items-center">
-            <div class="flex py-5 text-base items-center">
-                <x-posts.author :author="$post->author" />
-                <span class="text-gray-500 text-sm">{{ $post->getReadingTime() }}</span>
-            </div>
             <div class="flex items-center">
                 <span class="text-gray-500 mr-2">{{ $post->published_at->diffForHumans() }}</span>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.3"

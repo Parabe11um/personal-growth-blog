@@ -8,7 +8,6 @@
         </div>
         <div class="col-span-8">
             <div class="flex items-center py-1 text-sm article-meta">
-                <x-posts.author :author="$post->author" size="xs" />
                 <span class="text-xs text-gray-500">. {{ $post->published_at->diffForHumans() }}</span>
             </div>
             <h2 class="text-xl font-bold text-gray-900">

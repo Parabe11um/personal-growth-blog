@@ -22,6 +22,8 @@ class Post extends Model
         'body',
         'published_at',
         'featured',
+        'meta_title',
+        'meta_description',
     ];
 
     protected $casts = [

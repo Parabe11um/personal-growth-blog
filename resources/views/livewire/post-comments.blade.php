@@ -1,5 +1,5 @@
 <div class="mt-10 comments-box border-t border-gray-100 pt-10">
-    <h2 class="text-2xl font-semibold text-gray-900 mb-5">Discussions</h2>
+    <h2 class="text-2xl font-semibold text-gray-900 mb-5">Обсуждение</h2>
     @auth
 
         <textarea wire:model="comment"
@@ -7,7 +7,7 @@
             cols="30" rows="7"></textarea>
         <button wire:click="postComment"
             class="mt-3 inline-flex items-center justify-center h-10 px-4 font-medium tracking-wide text-white transition duration-200 bg-gray-900 rounded-lg hover:bg-gray-800 focus:shadow-outline focus:outline-none">
-            Post Comment
+            Отправить
         </button>
 
     @else
@@ -30,7 +30,7 @@
 
         @empty
             <div class="text-gray-500 text-center">
-                <span> No Comments Posted</span>
+                <span>Нет комментариев</span>
             </div>
         @endforelse
     </div>
