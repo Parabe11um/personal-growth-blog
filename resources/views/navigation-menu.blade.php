@@ -8,7 +8,7 @@
                         <x-application-mark />
                     </a>
                 </div>
-                <!-- Меню (скрыто на мобильных, видно на sm и выше) -->vvvvvvvvvvvvvvvvvvvvvvmmmv\
+                <!-- Меню (скрыто на мобильных, видно на sm и выше) -->
                 <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
                     <x-nav-link href="{{ route('home') }}" :active="request()->routeIs('home')">
                         {{ __('Главная') }}

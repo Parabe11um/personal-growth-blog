@@ -83,7 +83,7 @@ class User extends Authenticatable implements FilamentUser
 
     public function likes()
     {
-        return $this->belongsToMany(Post::class, 'post_like')->withTimestamps();
+        return $this->belongsToMany(Post::class, 'post_likes')->withTimestamps();
     }
 
     public function hasLiked(Post $post)

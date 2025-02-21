@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\PostView;
 use Doctrine\DBAL\Query;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -26,8 +27,17 @@ class PostController extends Controller
         ]);
     }
 
-    public function show(Post $post)
+    public function show(Post $post, Request $request)
     {
+
+        $user = $request->user();
+        PostView::create([
+            'ip_address' => $request->ip(),
+            'user_agent' => $request->userAgent(),
+            'post_id' => $post->id,
+            'user_id' => $user?->id,
+        ]);
+
         return view(
             'posts.show',
             [

@@ -47,7 +47,7 @@ class Post extends Model
 
     public function likes()
     {
-        return $this->belongsToMany(User::class, 'post_like')->withTimestamps();
+        return $this->belongsToMany(User::class, 'post_likes')->withTimestamps();
     }
     public function scopePublished($query)
     {
