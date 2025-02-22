@@ -9,16 +9,20 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
-        Schema::rename('post_like', 'post_likes');
+        if (Schema::hasTable('post_like')) {
+            Schema::rename('post_like', 'post_likes');
+        }
     }
 
     /**
      * Reverse the migrations.
      */
-    public function down(): void
+    public function down()
     {
-        Schema::rename('post_likes', 'post_like');
+        if (Schema::hasTable('post_likes')) {
+            Schema::rename('post_likes', 'post_like');
+        }
     }
 };
