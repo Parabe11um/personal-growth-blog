@@ -11,19 +11,6 @@
     @endsection
 
     <div class="mb-10 w-full">
-        <div class="mb-16">
-            <h2 class="mt-16 mb-5 text-3xl text-yellow-500 font-bold">Популярные статьи</h2>
-            <div class="w-full">
-                <div class="grid grid-cols-3 gap-10 w-full">
-                    @foreach($featuredPosts as $post)
-                        <x-posts.post-card :post="$post" class="md:col-span-1 col-span-3"/>
-                    @endforeach
-                </div>
-            </div>
-            <a class="mt-10 block text-center text-lg text-yellow-500 font-semibold"
-               href="{{ route('posts.index') }}">Больше</a>
-        </div>
-        <hr>
 
         <h2 class="mt-16 mb-5 text-3xl text-yellow-500 font-bold">Недавние статьи</h2>
         <div class="w-full mb-5">
@@ -37,5 +24,20 @@
         </div>
         <a class="mt-10 block text-center text-lg text-yellow-500 font-semibold"
            href="{{ route('posts.index') }}">Больше</a>
+
+        <hr>
+
+        <div class="mb-16">
+            <h2 class="mt-16 mb-5 text-3xl text-yellow-500 font-bold">Популярные статьи</h2>
+            <div class="w-full">
+                <div class="grid grid-cols-3 gap-10 w-full">
+                    @foreach($featuredPosts as $post)
+                        <x-posts.post-card :post="$post" class="md:col-span-1 col-span-3"/>
+                    @endforeach
+                </div>
+            </div>
+            <a class="mt-10 block text-center text-lg text-yellow-500 font-semibold"
+               href="{{ route('posts.index') }}">Больше</a>
+        </div>
     </div>
 </x-app-layout>
