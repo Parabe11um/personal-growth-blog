@@ -32,6 +32,6 @@
     </div>
 
     <div class="my-3">
-        {{ $this->posts->onEachSide(1)->links() }}
+        {{ $this->posts->onEachSide(1)->links('vendor.livewire.pagination.tailwind') }}
     </div>
 </div>
