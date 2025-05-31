@@ -24,9 +24,6 @@
                     @foreach ($post->categories as $category)
                         <x-posts.category-badge :category="$category" />
                     @endforeach
-                    <div class="flex items-center space-x-4">
-                        <span class="text-sm text-gray-500">{{ $post->getReadingTime() }} min read</span>
-                    </div>
                 </div>
                 <div>
                     <livewire:like-button :key="'like-' . $post->id" :$post />
