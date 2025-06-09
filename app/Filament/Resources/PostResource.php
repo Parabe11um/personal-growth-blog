@@ -75,8 +75,8 @@ class PostResource extends Resource
             ->columns([
                 ImageColumn::make('image'),
                 TextColumn::make('title')->sortable()->searchable(),
-                TextColumn::make('slug')->sortable()->searchable(),
-                TextColumn::make('author.name')->sortable()->searchable(),
+//                TextColumn::make('slug')->sortable()->searchable(),
+//                TextColumn::make('author.name')->sortable()->searchable(),
                 TextColumn::make('published_at')->date('Y-m-d')->sortable()->searchable(),
                 CheckboxColumn::make('featured'),
             ])
