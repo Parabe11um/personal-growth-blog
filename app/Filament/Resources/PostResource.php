@@ -80,6 +80,7 @@ class PostResource extends Resource
                 TextColumn::make('published_at')->date('Y-m-d')->sortable()->searchable(),
                 CheckboxColumn::make('featured'),
             ])
+            ->defaultSort('published_at', 'desc')
             ->filters([
                 Tables\Filters\TrashedFilter::make(),
             ])
