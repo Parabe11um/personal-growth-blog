@@ -22,6 +22,7 @@ class Post extends Model
         'body',
         'published_at',
         'featured',
+        'telegram',
         'meta_title',
         'meta_description',
     ];

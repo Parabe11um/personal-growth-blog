@@ -57,6 +57,9 @@ class PostResource extends Resource
                         FileUpload::make('image')->image()->directory('posts/thumbnails'),
                         DateTimePicker::make('published_at')->nullable(),
                         Checkbox::make('featured'),
+                        Checkbox::make('telegram')
+                            ->label('Telegram')
+                            ->default(false),
                         Select::make('user_id')
                             ->relationship('author', 'name')
                             ->searchable()
@@ -75,10 +78,11 @@ class PostResource extends Resource
             ->columns([
                 ImageColumn::make('image'),
                 TextColumn::make('title')->sortable()->searchable(),
+                CheckboxColumn::make('telegram'),
 //                TextColumn::make('slug')->sortable()->searchable(),
 //                TextColumn::make('author.name')->sortable()->searchable(),
                 TextColumn::make('published_at')->date('Y-m-d')->sortable()->searchable(),
-                CheckboxColumn::make('featured'),
+//                CheckboxColumn::make('featured'),
             ])
             ->defaultSort('published_at', 'desc')
             ->filters([
