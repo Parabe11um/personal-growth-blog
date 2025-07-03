@@ -5,8 +5,18 @@
             <h1 class="text-2xl md:text-3xl p-20 font-bold text-center lg:text-5xl text-gray-700">
                 Блог о персональном развитии, карьерном росте, самопознании и совершенствовании
             </h1>
-            <a class="px-3 py-2 text-lg text-white bg-gray-800 rounded mt-5 inline-block"
-               href="{{ route('posts.index') }}">Подробнее</a>
+            <div class="flex justify-center gap-2 mt-5">
+                <a class="px-4 py-2 text-lg text-white bg-gray-800 rounded inline-block"
+                   href="{{ route('posts.index') }}">
+                    Подробнее
+                </a>
+
+                <a class="px-4 py-2 text-lg text-white bg-gray-800 rounded inline-flex items-center space-x-2"
+                   href="https://t.me/skill2grow" target="_blank" rel="noopener">
+                    <img src="{{ asset('storage/telegram-brands-solid.svg') }}" alt="Telegram" class="h-5 w-5" />
+                    <span>Мы в Телеграм</span>
+                </a>
+            </div>
         </div>
     @endsection
 
