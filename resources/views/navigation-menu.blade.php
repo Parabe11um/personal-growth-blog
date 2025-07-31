@@ -22,15 +22,6 @@
                 </div>
             </div>
 
-            <!-- Правая часть: авторизация -->
-            <div class="hidden sm:ml-6 sm:flex sm:items-center">
-                @auth
-                    @include('layouts.partials.header-right-auth')
-                @else
-                    @include('layouts.partials.header-right-guest')
-                @endauth
-            </div>
-
             <!-- Мобильное меню (гамбургер) -->
             <div class="-mr-2 flex items-center sm:hidden">
                 <button @click="open = !open" type="button"
@@ -63,13 +54,6 @@
             <x-nav-link href="{{ route('about') }}" :active="request()->routeIs('about')" class="block my-4 border-transparent text-base font-medium text-gray-600 hover:border-gray-300 hover:text-gray-800">
                 {{ __('О блоге') }}
             </x-nav-link>
-        </div>
-        <div class="pt-4 pb-3 border-t border-gray-200">
-            @auth
-                @include('layouts.partials.header-right-auth')
-            @else
-                @include('layouts.partials.header-right-guest')
-            @endauth
         </div>
     </div>
 </nav>
