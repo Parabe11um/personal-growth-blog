@@ -1,99 +1,114 @@
 @props(['title'])
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        @php
-            $route = request()->path();
+    @php
+        $route = request()->path();
 
-            switch ($route) {
-                case '/':
-                case '':
-                    $metaTitle = 'Skilltogrow — Персональное развитие, карьера и самопознание';
-                    $metaDescription = 'Стартовая страница Skilltogrow: всё о саморазвитии, карьере и расширении личных возможностей.';
-                    break;
+        switch ($route) {
+            case '/':
+            case '':
+                $metaTitle = 'Skilltogrow — Персональное развитие, карьера и самопознание';
+                $metaDescription = 'Стартовая страница Skilltogrow: всё о саморазвитии, карьере и расширении личных возможностей.';
+                break;
 
-                case 'blog':
-                    $metaTitle = 'Блог Skilltogrow — Статьи о саморазвитии и карьерном росте';
-                    $metaDescription = 'Читайте статьи о развитии навыков, карьерных стратегиях, мышлении и современных подходах к самосовершенствованию.';
-                    break;
+            case 'blog':
+                $metaTitle = 'Блог Skilltogrow — Статьи о саморазвитии и карьерном росте';
+                $metaDescription = 'Читайте статьи о развитии навыков, карьерных стратегиях, мышлении и современных подходах к самосовершенствованию.';
+                break;
 
-                case 'privacy-policy':
-                    $metaTitle = 'Политика конфиденциальности — Skilltogrow';
-                    $metaDescription = 'Политика конфиденциальности — Skilltogrow.';
-                    break;
+            case 'about':
+                $metaTitle = 'О проекте Skilltogrow';
+                $metaDescription = 'Узнайте о Skilltogrow, кому он полезен и как наш блог помогает в развитии личности и карьеры.';
+            break;
 
-                case 'terms-of-service':
-                    $metaTitle = 'Пользовательское соглашение — Skilltogrow';
-                    $metaDescription = 'Правила использования сайта Skilltogrow и ответственность сторон.';
-                    break;
+            case 'privacy-policy':
+                $metaTitle = 'Политика конфиденциальности — Skilltogrow';
+                $metaDescription = 'Политика конфиденциальности — Skilltogrow.';
+                break;
 
-                case 'forgot-password':
-                    $metaTitle = 'Восстановление пароля — Skilltogrow';
-                    $metaDescription = 'Введите email, чтобы восстановить доступ к аккаунту на Skilltogrow.';
-                    break;
+            case 'terms-of-service':
+                $metaTitle = 'Пользовательское соглашение — Skilltogrow';
+                $metaDescription = 'Правила использования сайта Skilltogrow и ответственность сторон.';
+                break;
 
-                default:
-                    $metaTitle = $metaTitle ?? 'Skilltogrow - Блог о персональном развитии, карьерном росте, самопознании и совершенствовании';
-                    $metaDescription = $metaDescription ?? 'Skilltogrow - Блог о персональном развитии, карьерном росте, самопознании и совершенствовании';
-            }
-        @endphp
+            case 'forgot-password':
+                $metaTitle = 'Восстановление пароля — Skilltogrow';
+                $metaDescription = 'Введите email, чтобы восстановить доступ к аккаунту на Skilltogrow.';
+                break;
 
-        @if (app()->environment('production'))
-            <!-- Yandex.Metrika counter -->
-            <script type="text/javascript" >
-                (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-                    m[i].l=1*new Date();
-                    for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-                    k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-                (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+            default:
+                $metaTitle = $metaTitle ?? 'Skilltogrow - Блог о персональном развитии, карьерном росте, самопознании и совершенствовании';
+                $metaDescription = $metaDescription ?? 'Skilltogrow - Блог о персональном развитии, карьерном росте, самопознании и совершенствовании';
+        }
+    @endphp
 
-                ym(100023172, "init", {
-                    clickmap:true,
-                    trackLinks:true,
-                    accurateTrackBounce:true,
-                    webvisor:true
-                });
-            </script>
-            <noscript><div><img src="https://mc.yandex.ru/watch/100023172" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-            <!-- /Yandex.Metrika counter -->
+    @if (app()->environment('production'))
+        <!-- Yandex.Metrika counter -->
+        <script type="text/javascript">
+            (function (m, e, t, r, i, k, a) {
+                m[i] = m[i] || function () {
+                    (m[i].a = m[i].a || []).push(arguments)
+                };
+                m[i].l = 1 * new Date();
+                for (var j = 0; j < document.scripts.length; j++) {
+                    if (document.scripts[j].src === r) {
+                        return;
+                    }
+                }
+                k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+            })
+            (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
 
-        @endif
+            ym(100023172, "init", {
+                clickmap: true,
+                trackLinks: true,
+                accurateTrackBounce: true,
+                webvisor: true
+            });
+        </script>
+        <noscript>
+            <div><img src="https://mc.yandex.ru/watch/100023172" style="position:absolute; left:-9999px;" alt=""/></div>
+        </noscript>
+        <!-- /Yandex.Metrika counter -->
 
-        <title>{{ $metaTitle }}</title>
-        <meta name="description" content="{{ $metaDescription }}">
+    @endif
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=arsenal:400,400i,700,700i" rel="stylesheet" />
+    <title>{{ $metaTitle }}</title>
+    <meta name="description" content="{{ $metaDescription }}">
 
-        <!-- Favicons -->
-        <link rel="apple-touch-icon" sizes="180x180" href="/storage/app/public/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="/storage/app/public/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/storage/app/public/favicon-16x16.png">
-        <link rel="manifest" href="/storage/app/public/site.webmanifest">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=arsenal:400,400i,700,700i" rel="stylesheet"/>
 
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/storage/app/public/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/storage/app/public/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/storage/app/public/favicon-16x16.png">
+    <link rel="manifest" href="/storage/app/public/site.webmanifest">
 
-        <!-- Styles -->
-        @livewireStyles
-    </head>
-    <body class="font-sans antialiased">
-        <x-banner />
-        @include('layouts.partials.header')
-        @yield('hero')
-        <main class="container mx-auto px-5 flex flex-grow">
-            {{ $slot }}
-        </main>
+    <!-- Scripts -->
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-        @include('layouts.partials.footer')
+    <!-- Styles -->
+    @livewireStyles
+</head>
+<body class="font-sans antialiased">
+<x-banner/>
+@include('layouts.partials.header')
+@yield('hero')
+<main class="container mx-auto px-5 flex flex-grow">
+    {{ $slot }}
+</main>
 
-        @stack('modals')
-        @livewireScripts
-        @props(['title'])
+@include('layouts.partials.footer')
+
+@stack('modals')
+@livewireScripts
+@props(['title'])
     </body>
 </html>
