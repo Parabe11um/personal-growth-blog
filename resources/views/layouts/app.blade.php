@@ -6,8 +6,45 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ $metaTitle ?: 'Skilltogrow - Блог о персональном развитии, карьерном росте, самопознании и совершенствовании' }}</title>
-        <meta name="description" content="{{ $metaDescription ?: 'Skilltogrow - Блог о персональном развитии, карьерном росте, самопознании и совершенствовании' }} ">
+        @php
+            $route = request()->path();
+
+            switch ($route) {
+                case '/':
+                case '':
+                    $metaTitle = 'Skilltogrow — Персональное развитие, карьера и самопознание';
+                    $metaDescription = 'Стартовая страница Skilltogrow: всё о саморазвитии, карьере и расширении личных возможностей.';
+                    break;
+
+                case 'blog':
+                    $metaTitle = 'Блог Skilltogrow — Статьи о саморазвитии и карьерном росте';
+                    $metaDescription = 'Читайте статьи о развитии навыков, карьерных стратегиях, мышлении и современных подходах к самосовершенствованию.';
+                    break;
+
+                case 'privacy-policy':
+                    $metaTitle = 'Политика конфиденциальности — Skilltogrow';
+                    $metaDescription = 'Политика конфиденциальности — Skilltogrow.';
+                    break;
+
+                case 'terms-of-service':
+                    $metaTitle = 'Пользовательское соглашение — Skilltogrow';
+                    $metaDescription = 'Правила использования сайта Skilltogrow и ответственность сторон.';
+                    break;
+
+                case 'forgot-password':
+                    $metaTitle = 'Восстановление пароля — Skilltogrow';
+                    $metaDescription = 'Введите email, чтобы восстановить доступ к аккаунту на Skilltogrow.';
+                    break;
+
+                default:
+                    $metaTitle = $metaTitle ?? 'Skilltogrow - Блог о персональном развитии, карьерном росте, самопознании и совершенствовании';
+                    $metaDescription = $metaDescription ?? 'Skilltogrow - Блог о персональном развитии, карьерном росте, самопознании и совершенствовании';
+            }
+        @endphp
+
+        <title>{{ $metaTitle }}</title>
+        <meta name="description" content="{{ $metaDescription }}">
+
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
