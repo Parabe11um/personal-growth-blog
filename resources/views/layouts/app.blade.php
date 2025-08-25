@@ -75,7 +75,7 @@
             <div><img src="https://mc.yandex.ru/watch/100023172" style="position:absolute; left:-9999px;" alt=""/></div>
         </noscript>
         <!-- /Yandex.Metrika counter -->
-
+        <meta name="yandex-verification" content="b9b2f4c3f88c28a5" />
     @endif
 
     <title>{{ $metaTitle }}</title>
