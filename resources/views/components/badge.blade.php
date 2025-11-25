@@ -30,4 +30,4 @@ $textColor = match ($textColor){
 
 @endphp
 
-<button {{ $attributes }} class="{{ $textColor }} {{ $bgColor }} rounded-xl px-3 py-1 text-base">{{ $slot }}</button>
+<button {{ $attributes }} class="{{ $textColor }} {{ $bgColor }} text-left rounded-xl px-3 py-1 text-base">{{ $slot }}</button>
