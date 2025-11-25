@@ -60,10 +60,10 @@ class PostResource extends Resource
                         Checkbox::make('telegram')
                             ->label('Telegram')
                             ->default(false),
-                        Select::make('user_id')
-                            ->relationship('author', 'name')
-                            ->searchable()
-                            ->required(),
+//                        Select::make('user_id')
+//                            ->relationship('author', 'name')
+//                            ->searchable()
+//                            ->required(),
                         Select::make('categories')
                             ->multiple()
                             ->relationship('categories', 'title')
