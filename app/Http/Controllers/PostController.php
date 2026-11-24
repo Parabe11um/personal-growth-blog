@@ -27,6 +27,10 @@ class PostController extends Controller
 
     public function show(Post $post, Request $request)
     {
+        $post = Post::published()
+            ->whereKey($post->getKey())
+            ->firstOrFail();
+
 
         $user = $request->user();
         PostView::create([

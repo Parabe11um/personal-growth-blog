@@ -27,7 +27,7 @@ Route::get('/sitemap.xml', function () {
     });
 
     // Добавляем URL всех постов
-    Post::all()->each(function (Post $post) use ($sitemap) {
+    Post::published()->each(function (Post $post) use ($sitemap) {
         $sitemap->add(
             Url::create("/blog/{$post->slug}")
                 ->setLastModificationDate($post->updated_at) // Указываем дату обновления поста

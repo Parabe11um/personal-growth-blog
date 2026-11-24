@@ -1,4 +1,4 @@
-<button wire.loading.attr="disabled" wire:click="toggleLike()" class="flex items-center">
+<button type="button" wire:loading.attr="disabled" wire:target="toggleLike" wire:click="toggleLike()" class="flex items-center">
     <svg wire:loading.delay aria-hidden="true" class="w-6 h-6 text-gray-200 animate-spin dark:text-gray-600 fill-red-600"
          viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path

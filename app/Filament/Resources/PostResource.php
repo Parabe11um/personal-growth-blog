@@ -7,8 +7,8 @@ use App\Models\Post;
 use Filament\Forms;
 use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\DateTimePicker;
-use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\RichEditor;
+use App\Filament\Forms\Components\SecureFileUpload;
+use App\Filament\Forms\Components\SecureRichEditor;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -42,7 +42,7 @@ class PostResource extends Resource
                                 $set('slug', Str::slug($state));
                             }),
                         TextInput::make('slug')->required()->minLength(1)->unique(ignoreRecord: true)->maxLength(150),
-                        RichEditor::make('body')
+                        SecureRichEditor::make('body')
                             ->required()
                             ->fileAttachmentsDirectory('posts/images')->columnSpanFull(),
 
@@ -54,7 +54,11 @@ class PostResource extends Resource
                 )->columns(2),
                 Section::make('Meta')->schema(
                     [
-                        FileUpload::make('image')->image()->directory('posts/thumbnails'),
+                        SecureFileUpload::make('image')
+                            ->image()
+                            ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
+                            ->maxSize(5120)
+                            ->directory('posts/thumbnails'),
                         DateTimePicker::make('published_at')->nullable(),
                         Checkbox::make('featured'),
                         Checkbox::make('telegram')
