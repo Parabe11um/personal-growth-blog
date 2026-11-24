@@ -3,12 +3,14 @@
 namespace App\Livewire;
 
 use App\Models\Post;
+use App\Models\User;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\RateLimiter;
 use Livewire\Attributes\Reactive;
 use Livewire\Component;
 
 class LikeButton extends Component
 {
-
     #[Reactive]
     public Post $post;
 
@@ -18,14 +20,38 @@ class LikeButton extends Component
             return $this->redirect(route('login'), true);
         }
 
-        $user = auth()->user();
+        $post = Post::published()
+            ->whereKey($this->post->getKey())
+            ->firstOrFail();
 
-        if($user->hasLiked($this->post)) {
-            $user->likes()->detach($this->post);
-            return;
-        }
+        $userId = auth()->id();
 
-        $user->likes()->attach($this->post);
+        $key = 'post-like:' . $userId;
+
+        abort_unless(
+            RateLimiter::attempt(
+                $key,
+                30,
+                static fn (): bool => true,
+                60
+            ),
+            429
+        );
+
+        DB::transaction(function () use ($post, $userId): void {
+            $user = User::query()
+                ->whereKey($userId)
+                ->lockForUpdate()
+                ->firstOrFail();
+
+            if ($user->hasLiked($post)) {
+                $user->likes()->detach($post->getKey());
+
+                return;
+            }
+
+            $user->likes()->attach($post->getKey());
+        }, 3);
     }
 
     public function render()

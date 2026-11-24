@@ -4,8 +4,11 @@
 
         <textarea wire:model="comment"
             class="w-full rounded-lg p-4 bg-gray-50 focus:outline-none text-sm text-gray-700 border-gray-200 placeholder:text-gray-400"
-            cols="30" rows="7"></textarea>
-        <button wire:click="postComment"
+            cols="30" rows="7" maxlength="200"></textarea>
+        @error('comment')
+            <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+        @enderror
+        <button type="button" wire:click="postComment" wire:loading.attr="disabled" wire:target="postComment"
             class="mt-3 inline-flex items-center justify-center h-10 px-4 font-medium tracking-wide text-white transition duration-200 bg-gray-900 rounded-lg hover:bg-gray-800 focus:shadow-outline focus:outline-none">
             Отправить
         </button>
